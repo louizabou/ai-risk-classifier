@@ -58,7 +58,7 @@ def classify_ai_use_case(use_case: str) -> dict:
     """
     # Initialize the Azure OpenAI client
     client = AzureOpenAI(
-        base_url=AZURE_OPENAI_ENDPOINT,
+        azure_endpoint="https://louiz-mmh5te2w-eastus2.openai.azure.com",
         api_key=AZURE_OPENAI_API_KEY,
         api_version="2024-12-01-preview"
     )
