@@ -94,7 +94,10 @@ ai-risk-classifier/
 ├── .gitignore
 ├── requirements.txt
 ├── infra/
-│   └── main.bicep              # Infrastructure as Code
+│   ├── main.bicep              # Infrastructure as Code
+│   ├── parameters.dev.json     # Dev environment parameters
+│   ├── parameters.prod.json    # Prod environment parameters (dry run)
+│   └── README.md               # Infra deployment guide
 ├── data/
 │   └── test-cases.json         # 20 evaluation test cases
 ├── prompts/
@@ -117,6 +120,21 @@ ai-risk-classifier/
 - Azure AI Foundry project
 - Azure AI Search service
 - Python 3.10+
+- ### Deploy Infrastructure
+```bash
+# Validate (dry run)
+az deployment group validate \
+  --resource-group <your-rg> \
+  --template-file infra/main.bicep \
+  --parameters infra/parameters.dev.json
+
+# Deploy Dev
+az deployment group create \
+  --resource-group <your-rg> \
+  --template-file infra/main.bicep \
+  --parameters infra/parameters.dev.json \
+  --name bicep-deploy-dev
+```
 
 ### Setup
 
